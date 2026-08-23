@@ -30,13 +30,13 @@ jobs:
     # "steps" = etapes executees dans l'ordre, de haut en bas.
     steps:
       # Etape 1 : recupere (clone) le code du depot sur la machine de la CI.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       # Etape 2 : installe Python 3.13 (meme version que requires-python).
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7.0.0
         with:
           python-version: "3.13"
       # Etape 3 : installe "uv" (gestionnaire de paquets/venv ultra-rapide).
-      - uses: astral-sh/setup-uv@v3
+      - uses: astral-sh/setup-uv@v10.0.1
       # Etape 4 : installe les dependances du projet + le groupe "dev".
       #   --frozen : on installe EXACTEMENT ce qui est verrouille dans uv.lock,
       #   sans recalculer les versions. C'est le geste enseigne dans tout le
@@ -44,7 +44,7 @@ jobs:
       #   MEME environnement que celui qui sera livre, jamais une resolution
       #   fraiche qui pourrait diverger.
       - name: Install
-        run: uv sync --frozen --extra dev
+        run: uv sync --frozen --extra dev --extra mlops
       # Etape 5 : LINT => verifie la qualite du code avec ruff.
       - name: Lint
         run: uv run ruff check .
@@ -73,4 +73,4 @@ jobs:
           ignore-unfixed: true
           vuln-type: os,library
           scanners: vuln
-          version: v0.72.0
+          version: v0.74.0

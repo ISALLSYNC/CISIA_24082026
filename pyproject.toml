@@ -47,16 +47,10 @@ dependencies = [
     "typer>=0.12",
     # loguru : journalisation (logs) simple et lisible.
     "loguru>=0.7",
-    "dvc>=3.67.1",
     "fastapi>=0.111",  # API web rapide + doc /docs auto (module 25)
     "uvicorn[standard]>=0.30",  # serveur ASGI qui fait tourner l'API (module 25)
     "python-multipart>=0.0.9",  # upload de fichiers pour /predict-image (module 25)
     "prometheus-fastapi-instrumentator>=8.0.2",  # expose /metrics pour Prometheus (module 33)
-    "prefect>=3.7.6",  # orchestration du flow ingest→predict→store (modules 29-30)
-    "sqlalchemy>=2.0.51",  # accès base de données / upsert (module 30)
-    "psycopg[binary]>=3.3.4",  # pilote PostgreSQL (module 28/30)
-    "scipy>=1.18.0",  # tests statistiques pour le drift : KS (module 31)
-    "evidently>=0.7.21",  # rapports de data drift (module 32)
 ]
 
 # --- [project.optional-dependencies] : dependances OPTIONNELLES --------------
@@ -76,8 +70,15 @@ dev = [
     "matplotlib>=3.10",
 ]
 mlops = [
-    "dvc>=3.5",
+    # Ces outils servent aux modules 23-34 mais ne sont pas nécessaires pour
+    # exécuter l'API dans son conteneur de production.
+    "dvc>=3.67.1",
     "mlflow>=2.14",
+    "prefect>=3.7.6",
+    "sqlalchemy>=2.0.51",
+    "psycopg[binary]>=3.3.4",
+    "scipy>=1.18.0",
+    "evidently>=0.7.21",
 ]
 
 # --- [project.scripts] : commande(s) en ligne de commande exposee(s) ---------

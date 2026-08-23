@@ -86,6 +86,15 @@ RUN --mount=type=cache,target=/root/.cache/uv uv sync --frozen --no-dev --no-edi
 # ABANDONNÉ ici : on ne récupérera que le strict nécessaire -> image minimale.
 FROM python:3.13-slim AS runtime
 
+# Applique les correctifs de sécurité Debian disponibles au moment du build.
+# pip/setuptools ne servent pas à l'exécution : le venv est déjà construit et
+# copié depuis l'étape précédente. On les retire donc de l'image finale, ce qui
+# réduit la surface d'attaque et évite de scanner le SBOM interne de pip.
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && python -m pip uninstall -y pip setuptools
+
 # Sécurité : on crée un utilisateur NON privilégié nommé 'appuser'.
 #   useradd -m       : crée aussi son dossier personnel (/home/appuser).
 #   -u 10001         : lui fixe un identifiant (UID) élevé et stable.
