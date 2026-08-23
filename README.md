@@ -21,7 +21,8 @@ chemins déjà imprimés dans les supports. Le dépôt GitHub, lui, est bien cel
 `CISIA_24082026`.
 
 - `main` : état sain de référence, utilisé de J1 à J5 ;
-- `v1.0-sain` : point de retour certifié du Game Day ;
+- `v1.1-sain` : point de retour certifié et durci du Game Day ;
+- `v1.0-sain` : archive initiale conservée pour la traçabilité ;
 - `J6-gameday` : branche volontairement cassée, à n'ouvrir que lorsque le formateur donne le départ ;
 - TP PayGuard séparé : <https://github.com/thomasfesq/CISIA_24082026_PayGuard>.
 

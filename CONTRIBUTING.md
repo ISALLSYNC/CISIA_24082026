@@ -55,9 +55,9 @@ git switch -c sauvegarde-prenom-nom
 git push -u origin sauvegarde-prenom-nom
 ```
 
-Demandez ensuite au formateur avant toute restauration. Le tag `v1.0-sain` sert de référence de
+Demandez ensuite au formateur avant toute restauration. Le tag `v1.1-sain` sert de référence de
 comparaison pour le Game Day :
 
 ```powershell
-git diff v1.0-sain
+git diff v1.1-sain
 ```
