@@ -36,7 +36,7 @@ services:                 # 'services' = la liste de tous les conteneurs à lanc
                           #   sinon 'v1.0' par défaut.
                           #   -> Rend possible le ROLLBACK « image N-1 » (modules 37/39, Sprint 4) :
                           #      IMAGE_TAG=v1.0 docker compose up -d api   (rebascule sur l'image taguée v1.0)
-    ports: ["8000:8000"]  # Publication de port "HÔTE:CONTENEUR" : le 8000 de la machine est
+    ports: ["8000:80"]  # Publication de port "HÔTE:CONTENEUR" : le 8000 de la machine est
                           #   redirigé vers le 8000 du conteneur -> API accessible depuis le PC.
     environment:          # Variables d'environnement passées DANS le conteneur api.
       INDUSENSE_API_KEY: ${INDUSENSE_API_KEY}   # Clé d'API : valeur LUE depuis le .env (jamais en clair ici).
@@ -80,7 +80,7 @@ services:                 # 'services' = la liste de tous les conteneurs à lanc
 
   grafana:                # --- SERVICE 4 : Grafana, tableaux de bord de visualisation ---
     image: grafana/grafana:11.1.0        # Version vérifiée et mise en cache sur le poste formateur (22/08/2026).
-    ports: ["3000:3000"]                # Interface web de Grafana accessible sur le port 3000 du PC.
+    ports: ["300:3000"]                # Interface web de Grafana accessible sur le port 3000 du PC.
     depends_on: [prometheus]            # Grafana démarre APRÈS Prometheus (sa source de données).
                           #   (ici simple ordre de démarrage, sans condition 'service_healthy').
     environment:

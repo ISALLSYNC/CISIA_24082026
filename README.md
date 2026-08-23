@@ -12,7 +12,7 @@ cd "$HOME\Documents"
 git clone https://github.com/thomasfesq/CISIA_24082026.git CISIA_29062026
 cd .\CISIA_29062026
 git switch -c prenom-nom
-uv sync --frozen --extra dev --extra mlops
+uv sync --extra all
 uv run python -m pytest -q
 ```
 

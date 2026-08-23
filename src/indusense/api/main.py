@@ -202,7 +202,7 @@ app.middleware("http")(limit_body_size)
 #   - `x_api_key` : FastAPI lit pour nous l'en-tête HTTP "X-API-Key" (grâce à
 #     `Header(None, alias="X-API-Key")`) et nous le donne. `None` = valeur par
 #     défaut si l'en-tête est absent.
-def require_api_key(x_api_key: str | None = Header(None, alias="X-API-Key")) -> None:
+def require_api_key(x_api_key: str | None = Header(None, alias="X-Api-Token")) -> None:
     # Clé absente OU invalide -> 401 (et non 422) : statut sémantiquement correct pour l'auth.
     # Détail pédagogique : on choisit 401 (« Unauthorized » = non authentifié)
     # plutôt que 422 (« données invalides »), car ici le problème n'est pas la
